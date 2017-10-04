@@ -71,12 +71,10 @@ def CriaDicionario():
 
 # cria um dicionario
 def CriaDicionario2(keybase, letters):
-	for i4 in letters:
-		# print(" " + i4)
-		for i3 in letters:
-			for i2 in letters:
-				for i1 in letters:
-					keys.append(keybase + i4 + i3 + i2 + i1)
+	for i3 in letters:
+		for i2 in letters:
+			for i1 in letters:
+				keys.append(keybase + chr(i3) + chr(i2) + chr(i1))
 
 # faz brute force ate achar a chave
 def BruteForce():
@@ -122,12 +120,15 @@ def strToBin():
 #CriaDicionario()
 #BruteForce()
 
-letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+letters = range(33, 126)
+#letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 #letters = "aeiouAEIOUWwBbrR123098"
 for i5 in letters:
-	print(i5)
-	keybase = "Key2Group17" + i5
-	CriaDicionario2(keybase, letters)
-	BruteForce()
-	print(keys[0])
-	del keys[:]
+	for i4 in letters:
+		print("Iteracao: " + chr(i5) + " " + chr(i4) + " - ", i5)
+		keybase = "Key2Group17" + chr(i5) + chr(i4)
+		CriaDicionario2(keybase, letters)
+		BruteForce()
+		print(keys[0])
+		print(keys[44])
+		del keys[:]
