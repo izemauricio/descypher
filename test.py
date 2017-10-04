@@ -72,7 +72,7 @@ def CriaDicionario():
 # cria um dicionario
 def CriaDicionario2(keybase, letters):
 	for i4 in letters:
-		print(" " + i4)
+		# print(" " + i4)
 		for i3 in letters:
 			for i2 in letters:
 				for i1 in letters:
@@ -85,12 +85,7 @@ def BruteForce():
 	latin = bytearray.fromhex(texto).decode("latin-1")
 	#print(latin)
 	# key = b"Key2Group17aaaaa"
-	i = 0
 	for key in keys:
-		i = i + 1
-		if(i%2000000000 == 0):
-			print("> ", i)
-			i = 0
 		machine = AES.new(key.encode(), AES.MODE_ECB)
 		claro = machine.decrypt(textobyte)
 		# print(claro.hex().upper())
@@ -128,10 +123,11 @@ def strToBin():
 #BruteForce()
 
 letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+#letters = "aeiouAEIOUWwBbrR123098"
 for i5 in letters:
 	print(i5)
 	keybase = "Key2Group17" + i5
 	CriaDicionario2(keybase, letters)
 	BruteForce()
-	print(key[0])
-	del keys
+	print(keys[0])
+	del keys[:]
