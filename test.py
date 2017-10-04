@@ -59,15 +59,24 @@ def CriaDicionario():
 						keys.append(keybase + chr(i5) + chr(i4) + chr(i3) + chr(i2) + chr(i1))
 	'''
 	letters2 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-	letters = "abcdefghijklmnopqrstuvwxyz"
+	letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	for i5 in letters:
-		print(i5)
+		#print(i5)
 		for i4 in letters:
 			for i3 in letters:
 				for i2 in letters:
 					for i1 in letters:
 						keys.append(keybase + i5 + i4 + i3 + i2 + i1)
 	# print("QUANTIDADE DE WORDS: " + len(keys))
+
+# cria um dicionario
+def CriaDicionario2(keybase, letters):
+	for i4 in letters:
+		print(" " + i4)
+		for i3 in letters:
+			for i2 in letters:
+				for i1 in letters:
+					keys.append(keybase + i4 + i3 + i2 + i1)
 
 # faz brute force ate achar a chave
 def BruteForce():
@@ -76,14 +85,28 @@ def BruteForce():
 	latin = bytearray.fromhex(texto).decode("latin-1")
 	#print(latin)
 	# key = b"Key2Group17aaaaa"
+	i = 0
 	for key in keys:
-		# print(key)
+		i = i + 1
+		if(i%2000000000 == 0):
+			print("> ", i)
+			i = 0
 		machine = AES.new(key.encode(), AES.MODE_ECB)
 		claro = machine.decrypt(textobyte)
 		# print(claro.hex().upper())
 		# print(claro.decode("latin-1"))
 		clarolatin = claro.decode("latin-1")
-		if (clarolatin.find("desafio") != -1):
+		if (clarolatin.find(" que ") != -1):
+			print(key)
+			print(claro)
+			print(clarolatin)
+			input('APERTE ENTER PARA CONTINUAR')
+		if (clarolatin.find("cripto") != -1):
+			print(key)
+			print(claro)
+			print(clarolatin)
+			input('APERTE ENTER PARA CONTINUAR')
+		if (clarolatin.find("agora") != -1):
 			print(key)
 			print(claro)
 			print(clarolatin)
@@ -101,5 +124,14 @@ def strToBin():
 
 #TestaAlgoritmo()
 #ChecaSeEhMultiplo()
-CriaDicionario()
-BruteForce()
+#CriaDicionario()
+#BruteForce()
+
+letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+for i5 in letters:
+	print(i5)
+	keybase = "Key2Group17" + i5
+	CriaDicionario2(keybase, letters)
+	BruteForce()
+	print(key[0])
+	del keys
